@@ -9,9 +9,9 @@ import os
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--filter", type=str, default="")
-    parser.add_argument("--save-pdf", type=bool, default=True)
-    parser.add_argument("--output-dir", type=str, default="output")
+    parser.add_argument("--filter", type=str, default=os.getenv("FILTER", ""))
+    parser.add_argument("--save-pdf", type=bool, default=os.getenv("SAVE_PDF", True))
+    parser.add_argument("--output-dir", type=str, default=os.getenv("OUTPUT_DIR", "output"))
     parser.add_argument("--api-key", type=str, default=os.getenv("NOTION_API_KEY"))
 
     args = parser.parse_args()
