@@ -13,6 +13,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "secnex-notion-api>=0.0.6",
+    "weasyprint>=65.0",
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -20,6 +21,9 @@ classifiers = [
 ]
 license = "MIT"
 license-files = ["LICENSE"]
+
+[project.scripts]
+notionconverter = "notion_pdf_exporter.converter:main"
 
 [project.urls]
 Homepage = "https://github.com/secnex/notion-pdf-exporter"
