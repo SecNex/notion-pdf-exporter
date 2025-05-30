@@ -19,6 +19,9 @@ def main():
     notion_client = Client(token=args.api_key)
     notion_exporter = NotionExporter(notion_client)
 
+    print(f"ℹ️ Will export pages with filter: {args.filter}")
+    print(f"ℹ️ Will save to directory: {args.output_dir}")
+
     notion_exporter.export_page(
         filter=args.filter,
         style=DefaultStyle(),
