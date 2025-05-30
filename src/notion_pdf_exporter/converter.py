@@ -23,7 +23,8 @@ def main():
         filter=args.filter,
         style=DefaultStyle(),
         save_pdf=args.save_pdf,
-        output_dir=args.output_dir
+        output_dir=args.output_dir,
+        create_dir=False
     )
 
 if __name__ == "__main__":

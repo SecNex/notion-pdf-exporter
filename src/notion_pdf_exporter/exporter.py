@@ -22,8 +22,9 @@ class NotionExporter:
         blocks = self.__notion_client.get_block_children(page["id"])
         return [block for block in blocks["results"]]
 
-    def export_page(self, filter: str = "", style: Style = DefaultStyle(), save_pdf: bool = True, output_dir: str = "output") -> None:
-        os.makedirs(output_dir, exist_ok=True)
+    def export_page(self, filter: str = "", style: Style = DefaultStyle(), save_pdf: bool = True, output_dir: str = "output", create_dir: bool = True) -> None:
+        if create_dir:
+            os.makedirs(output_dir, exist_ok=True)
         print(f"🔍 Searching for pages...")
         pages = self.__get_pages(filter)
         print(f"🔍 Found {len(pages)} pages to export!")
@@ -54,14 +55,12 @@ class NotionExporter:
 
     def save_html(self, html: str, page_title: str, output_dir: str = "output") -> None:
         print(f"💾 Saving {page_title}...")
-        os.makedirs(output_dir, exist_ok=True)
         with open(f"{output_dir}/{page_title}.html", "w") as f:
             f.write(html)
         print(f"✅ Saved {page_title}!")
 
     def save_pdf(self, html: str, page_title: str, output_dir: str = "output") -> None:
         print(f"💾 Saving {page_title}...")
-        os.makedirs(output_dir, exist_ok=True)
         convert = PDFConverter(html)
         convert.save(Path(f"{output_dir}/{page_title}.pdf"))
         print(f"✅ Saved {page_title}!")
